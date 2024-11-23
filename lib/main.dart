@@ -33,7 +33,11 @@ class _MyAppState extends State<MyApp> {
                 return context.read<Dog>().getBigDog();
               },
               initialData: BigDog(name: "noName"),
-            )
+            ),
+            StreamProvider<Decibel>(
+              create: (context) => context.read<Dog>().bark(),
+              initialData: Decibel(0),
+            ),
           ],
           child: Home(),
         ),
@@ -96,6 +100,7 @@ class _SecondChildState extends State<SecondChild> {
         const Text("Second"),
         Text("age : ${context.watch<Dog>().age}"),
         Text("BigDogName : ${context.watch<BigDog>().name}"),
+        Text("Decibel : ${context.watch<Decibel>().level}"),
         ThirdChild(),
       ],
     );
