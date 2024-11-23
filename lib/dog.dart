@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_provider/big_dog.dart';
 
 class Dog with ChangeNotifier {
   String name;
@@ -13,5 +14,10 @@ class Dog with ChangeNotifier {
     print('current age : $age');
     age++;
     notifyListeners();
+  }
+
+  Future<BigDog> getBigDog() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return BigDog(name: "SuperBigDog");
   }
 }

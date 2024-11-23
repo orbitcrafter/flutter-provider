@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider/big_dog.dart';
 import 'package:flutter_provider/dog.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,12 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider<Dog>(
               create: (context) => Dog(name: "바둑이", age: 5),
             ),
+            FutureProvider<BigDog>(
+              create: (context) {
+                return context.read<Dog>().getBigDog();
+              },
+              initialData: BigDog(name: "noName"),
+            )
           ],
           child: Home(),
         ),
@@ -88,6 +95,7 @@ class _SecondChildState extends State<SecondChild> {
       children: [
         const Text("Second"),
         Text("age : ${context.watch<Dog>().age}"),
+        Text("BigDogName : ${context.watch<BigDog>().name}"),
         ThirdChild(),
       ],
     );
