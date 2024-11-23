@@ -22,8 +22,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("title"),
         ),
-        body: ChangeNotifierProvider<Dog>(
-          create: (context) => Dog(name: "바둑이", age: 5),
+        body: MultiProvider(
+          providers: [
+            ChangeNotifierProvider<Dog>(
+              create: (context) => Dog(name: "바둑이", age: 5),
+            ),
+          ],
           child: Home(),
         ),
       ),
@@ -73,12 +77,11 @@ class SecondChild extends StatefulWidget {
 }
 
 class _SecondChildState extends State<SecondChild> {
-
   @override
   void initState() {
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
