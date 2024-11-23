@@ -1,4 +1,6 @@
-class Dog {
+import 'package:flutter/widgets.dart';
+
+class Dog with ChangeNotifier {
   String name;
   int age;
 
@@ -6,4 +8,10 @@ class Dog {
     required this.name,
     required this.age,
   });
+
+  void grow() {
+    print('current age : $age');
+    age++;
+    notifyListeners();
+  }
 }
