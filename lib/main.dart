@@ -58,7 +58,7 @@ class _FirstChildState extends State<FirstChild> {
     return Column(
       children: [
         const Text("First"),
-        Text("name : ${Provider.of<Dog>(context, listen: false).name}"),
+        Text("name : ${context.read<Dog>().name}"),
         SecondChild(),
       ],
     );
@@ -84,7 +84,7 @@ class _SecondChildState extends State<SecondChild> {
     return Column(
       children: [
         const Text("Second"),
-        Text("age : ${Provider.of<Dog>(context, listen: true).age}"),
+        Text("age : ${context.watch<Dog>().age}"),
         ThirdChild(),
       ],
     );
@@ -102,7 +102,7 @@ class _ThirdChildState extends State<ThirdChild> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => Provider.of<Dog>(context, listen: false).grow(),
+      onPressed: () => context.read<Dog>().grow(),
       child: const Icon(Icons.add),
     );
   }
